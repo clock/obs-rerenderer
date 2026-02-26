@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{B1C3D5E7-F901-4A9B-8F2E-3A8F5B12E9C4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{C2D4E6F8-0A1B-5C3D-9E4F-4B9C6D0E1F2A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\filters">
+      <UniqueIdentifier>{D3E5F7A9-1B2C-6D4E-0F5A-5C0D7E1F2A3B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\filters\example">
+      <UniqueIdentifier>{E4F6A8B0-2C3D-7E5F-1A6B-6D1E8F2A3B4C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\filters\motion_blur">
+      <UniqueIdentifier>{F5A7B9C1-3D4E-8F6A-2B7C-7E2F9A3B4C5D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="data">
+      <UniqueIdentifier>{A6B8C0D2-4E5F-9A7B-3C8D-8F3A0B4C5D6E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="data\effects">
+      <UniqueIdentifier>{B7C9D1E3-5F6A-0B8C-4D9E-9A4B0C5D6E7F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ClCompile Include="src\plugin_main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\frame_buffer.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\filter_base.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filters\example\example_processor.cpp">
+      <Filter>src\filters\example</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filters\example\example_filter.cpp">
+      <Filter>src\filters\example</Filter>
+    </ClCompile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ClInclude Include="src\plugin_main.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\frame_processor.hpp">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\frame_buffer.hpp">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\filter_base.hpp">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filters\example\example_processor.hpp">
+      <Filter>src\filters\example</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filters\example\example_filter.hpp">
+      <Filter>src\filters\example</Filter>
+    </ClInclude>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="obs_sdk.props.example" />
+    <None Include=".gitignore" />
+    <None Include="data\locale\en-US.ini">
+      <Filter>data</Filter>
+    </None>
+    <None Include="data\effects\example.effect">
+      <Filter>data\effects</Filter>
+    </None>
+  </ItemGroup>
+</Project>

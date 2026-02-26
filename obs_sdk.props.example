@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  copy this to obs_sdk.props and fill in your paths.
+  obs_sdk.props is gitignored — everyone has a different setup.
+
+  OBS_INCLUDE: folder containing obs-module.h and friends
+    - if you built obs-studio from source:   C:\code\obs-studio\libobs
+    - if you have a pre-built sdk:           C:\path\to\sdk\include
+
+  OBS_LIB: folder containing obs.lib
+    - if you built obs-studio from source:   C:\code\obs-studio\build\libobs\Release
+    - if you have a pre-built sdk:           C:\path\to\sdk\lib
+
+  OBS_INSTALL: your OBS install dir, used by the post-build deploy event
+    - default:                               C:\Program Files\obs-studio
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <OBS_INCLUDE>C:\code\obs-studio\libobs</OBS_INCLUDE>
+    <OBS_LIB>C:\code\obs-studio\build\libobs\Release</OBS_LIB>
+    <OBS_INSTALL>C:\Program Files\obs-studio</OBS_INSTALL>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OBS_INCLUDE Condition="'$(OBS_INCLUDE)'==''">FILL_IN_OBS_INCLUDE</OBS_INCLUDE>
+    <OBS_LIB Condition="'$(OBS_LIB)'==''">FILL_IN_OBS_LIB</OBS_LIB>
+    <OBS_INSTALL Condition="'$(OBS_INSTALL)'==''">C:\Program Files\obs-studio</OBS_INSTALL>
+  </PropertyGroup>
+</Project>

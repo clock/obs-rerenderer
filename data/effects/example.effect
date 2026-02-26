@@ -1,0 +1,36 @@
+uniform float4x4  ViewProj;
+uniform texture2d image;
+uniform float4    tint;
+
+sampler_state def_sampler {
+	Filter   = Linear;
+	AddressU = Clamp;
+	AddressV = Clamp;
+};
+
+struct vert_out {
+	float4 pos : POSITION;
+	float2 uv  : TEXCOORD0;
+};
+
+vert_out VS(vert_out v_in)
+{
+	vert_out v;
+	v.pos = mul(float4(v_in.pos.xyz, 1.0), ViewProj);
+	v.uv  = v_in.uv;
+	return v;
+}
+
+float4 PS(vert_out v_in) : TARGET
+{
+	return image.Sample(def_sampler, v_in.uv) * tint;
+}
+
+technique Draw
+{
+	pass
+	{
+		vertex_shader = VS(v_in);
+		pixel_shader  = PS(v_in);
+	}
+}

@@ -1,0 +1,13 @@
+# vs build output
+out/
+*.user
+.vs/
+
+# obs sdk — user-local paths and generated import libs
+obs_sdk.props
+obs_sdk_libs/
+
+# private — not for the repo
+agents/
+example_sources/
+.claude/
