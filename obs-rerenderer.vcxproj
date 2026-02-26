@@ -23,6 +23,9 @@
   <!-- import obs sdk paths — user creates obs_sdk.props from obs_sdk.props.example -->
   <Import Project="obs_sdk.props" Condition="Exists('obs_sdk.props')" />
 
+  <!-- import onnx runtime paths — user creates ort.props from ort.props.example -->
+  <Import Project="ort.props" Condition="Exists('ort.props')" />
+
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -106,6 +109,8 @@
     <ClCompile Include="src\filters\example\example_processor.cpp" />
     <ClCompile Include="src\filters\example\example_filter.cpp" />
     <ClCompile Include="src\filters\motion_blur\blur_weights.cpp" />
+    <ClCompile Include="src\filters\motion_blur\rife_session.cpp" />
+    <ClCompile Include="src\filters\motion_blur\interp_pipeline.cpp" />
     <ClCompile Include="src\filters\motion_blur\motion_blur_processor.cpp" />
     <ClCompile Include="src\filters\motion_blur\motion_blur_filter.cpp" />
   </ItemGroup>
@@ -118,12 +123,15 @@
     <ClInclude Include="src\filters\example\example_processor.hpp" />
     <ClInclude Include="src\filters\example\example_filter.hpp" />
     <ClInclude Include="src\filters\motion_blur\blur_weights.hpp" />
+    <ClInclude Include="src\filters\motion_blur\rife_session.hpp" />
+    <ClInclude Include="src\filters\motion_blur\interp_pipeline.hpp" />
     <ClInclude Include="src\filters\motion_blur\motion_blur_processor.hpp" />
     <ClInclude Include="src\filters\motion_blur\motion_blur_filter.hpp" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="obs_sdk.props.example" />
+    <None Include="ort.props.example" />
     <None Include=".gitignore" />
     <None Include="data\locale\en-US.ini" />
     <None Include="data\effects\example.effect" />

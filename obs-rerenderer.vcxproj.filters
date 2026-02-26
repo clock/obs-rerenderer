@@ -43,6 +43,12 @@
     <ClCompile Include="src\filters\motion_blur\blur_weights.cpp">
       <Filter>src\filters\motion_blur</Filter>
     </ClCompile>
+    <ClCompile Include="src\filters\motion_blur\rife_session.cpp">
+      <Filter>src\filters\motion_blur</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filters\motion_blur\interp_pipeline.cpp">
+      <Filter>src\filters\motion_blur</Filter>
+    </ClCompile>
     <ClCompile Include="src\filters\motion_blur\motion_blur_processor.cpp">
       <Filter>src\filters\motion_blur</Filter>
     </ClCompile>
@@ -73,6 +79,12 @@
     <ClInclude Include="src\filters\motion_blur\blur_weights.hpp">
       <Filter>src\filters\motion_blur</Filter>
     </ClInclude>
+    <ClInclude Include="src\filters\motion_blur\rife_session.hpp">
+      <Filter>src\filters\motion_blur</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filters\motion_blur\interp_pipeline.hpp">
+      <Filter>src\filters\motion_blur</Filter>
+    </ClInclude>
     <ClInclude Include="src\filters\motion_blur\motion_blur_processor.hpp">
       <Filter>src\filters\motion_blur</Filter>
     </ClInclude>
@@ -83,6 +95,7 @@
 
   <ItemGroup>
     <None Include="obs_sdk.props.example" />
+    <None Include="ort.props.example" />
     <None Include=".gitignore" />
     <None Include="data\locale\en-US.ini">
       <Filter>data</Filter>

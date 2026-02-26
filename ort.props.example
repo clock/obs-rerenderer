@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copy this file to ort.props (gitignored) and fill in the path to your
+  ONNX Runtime installation.
+
+  Download from:
+  https://github.com/microsoft/onnxruntime/releases
+  Get the GPU build: onnxruntime-win-x64-gpu-<version>.zip
+  Extract it somewhere, then set ORT_ROOT below.
+
+  The post-build step will copy the required DLLs to the OBS plugin folder.
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- path to the extracted onnxruntime zip, e.g. C:\onnxruntime-win-x64-gpu-1.20.0 -->
+    <ORT_ROOT>C:\onnxruntime</ORT_ROOT>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ORT_ROOT)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OBS_RERENDERER_HAS_ORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(ORT_ROOT)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>onnxruntime.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <!-- copy ORT dlls to obs plugin folder after build -->
+  <Target Name="CopyOrtDlls" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="$(ORT_ROOT)\lib\onnxruntime.dll"
+          DestinationFolder="$(OBS_INSTALL)\obs-plugins\64bit\"
+          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(ORT_ROOT)\lib\onnxruntime_providers_shared.dll"
+          DestinationFolder="$(OBS_INSTALL)\obs-plugins\64bit\"
+          SkipUnchangedFiles="true"
+          ContinueOnError="true" />
+    <Copy SourceFiles="$(ORT_ROOT)\lib\onnxruntime_providers_cuda.dll"
+          DestinationFolder="$(OBS_INSTALL)\obs-plugins\64bit\"
+          SkipUnchangedFiles="true"
+          ContinueOnError="true" />
+    <Copy SourceFiles="$(ORT_ROOT)\lib\onnxruntime_providers_dml.dll"
+          DestinationFolder="$(OBS_INSTALL)\obs-plugins\64bit\"
+          SkipUnchangedFiles="true"
+          ContinueOnError="true" />
+  </Target>
+</Project>
