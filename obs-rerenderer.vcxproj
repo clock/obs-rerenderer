@@ -105,6 +105,9 @@
     <ClCompile Include="src\core\filter_base.cpp" />
     <ClCompile Include="src\filters\example\example_processor.cpp" />
     <ClCompile Include="src\filters\example\example_filter.cpp" />
+    <ClCompile Include="src\filters\motion_blur\blur_weights.cpp" />
+    <ClCompile Include="src\filters\motion_blur\motion_blur_processor.cpp" />
+    <ClCompile Include="src\filters\motion_blur\motion_blur_filter.cpp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -114,6 +117,9 @@
     <ClInclude Include="src\core\filter_base.hpp" />
     <ClInclude Include="src\filters\example\example_processor.hpp" />
     <ClInclude Include="src\filters\example\example_filter.hpp" />
+    <ClInclude Include="src\filters\motion_blur\blur_weights.hpp" />
+    <ClInclude Include="src\filters\motion_blur\motion_blur_processor.hpp" />
+    <ClInclude Include="src\filters\motion_blur\motion_blur_filter.hpp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -121,6 +127,7 @@
     <None Include=".gitignore" />
     <None Include="data\locale\en-US.ini" />
     <None Include="data\effects\example.effect" />
+    <None Include="data\effects\motion_blur.effect" />
   </ItemGroup>
 
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

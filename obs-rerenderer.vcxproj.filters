@@ -40,6 +40,15 @@
     <ClCompile Include="src\filters\example\example_filter.cpp">
       <Filter>src\filters\example</Filter>
     </ClCompile>
+    <ClCompile Include="src\filters\motion_blur\blur_weights.cpp">
+      <Filter>src\filters\motion_blur</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filters\motion_blur\motion_blur_processor.cpp">
+      <Filter>src\filters\motion_blur</Filter>
+    </ClCompile>
+    <ClCompile Include="src\filters\motion_blur\motion_blur_filter.cpp">
+      <Filter>src\filters\motion_blur</Filter>
+    </ClCompile>
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +70,15 @@
     <ClInclude Include="src\filters\example\example_filter.hpp">
       <Filter>src\filters\example</Filter>
     </ClInclude>
+    <ClInclude Include="src\filters\motion_blur\blur_weights.hpp">
+      <Filter>src\filters\motion_blur</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filters\motion_blur\motion_blur_processor.hpp">
+      <Filter>src\filters\motion_blur</Filter>
+    </ClInclude>
+    <ClInclude Include="src\filters\motion_blur\motion_blur_filter.hpp">
+      <Filter>src\filters\motion_blur</Filter>
+    </ClInclude>
   </ItemGroup>
 
   <ItemGroup>
@@ -70,6 +88,9 @@
       <Filter>data</Filter>
     </None>
     <None Include="data\effects\example.effect">
+      <Filter>data\effects</Filter>
+    </None>
+    <None Include="data\effects\motion_blur.effect">
       <Filter>data\effects</Filter>
     </None>
   </ItemGroup>

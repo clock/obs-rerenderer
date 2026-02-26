@@ -80,10 +80,15 @@ src/
     example/                 reference implementation: tint filter
       example_processor.hpp/.cpp
       example_filter.hpp/.cpp
+    motion_blur/             temporal frame-blending blur filter
+      blur_weights.hpp/.cpp  weight curves + blend count calculation
+      motion_blur_processor.hpp/.cpp
+      motion_blur_filter.hpp/.cpp
 
 data/
   effects/
     example.effect           HLSL for the tint filter
+    motion_blur.effect       HLSL for the motion blur filter (16-frame blend)
   locale/
     en-US.ini                UI strings
 ```

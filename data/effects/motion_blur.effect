@@ -1,0 +1,106 @@
+uniform float4x4 ViewProj;
+
+// up to 16 frame textures, oldest first
+uniform texture2d tex_frame_0;
+uniform texture2d tex_frame_1;
+uniform texture2d tex_frame_2;
+uniform texture2d tex_frame_3;
+uniform texture2d tex_frame_4;
+uniform texture2d tex_frame_5;
+uniform texture2d tex_frame_6;
+uniform texture2d tex_frame_7;
+uniform texture2d tex_frame_8;
+uniform texture2d tex_frame_9;
+uniform texture2d tex_frame_10;
+uniform texture2d tex_frame_11;
+uniform texture2d tex_frame_12;
+uniform texture2d tex_frame_13;
+uniform texture2d tex_frame_14;
+uniform texture2d tex_frame_15;
+
+// per-frame blend weights (unused slots set to 0 by cpu)
+uniform float w0;
+uniform float w1;
+uniform float w2;
+uniform float w3;
+uniform float w4;
+uniform float w5;
+uniform float w6;
+uniform float w7;
+uniform float w8;
+uniform float w9;
+uniform float w10;
+uniform float w11;
+uniform float w12;
+uniform float w13;
+uniform float w14;
+uniform float w15;
+
+// color correction (1.0 = no change)
+uniform float brightness;
+uniform float saturation;
+uniform float contrast;
+
+sampler_state def_sampler {
+	Filter   = Linear;
+	AddressU = Clamp;
+	AddressV = Clamp;
+};
+
+struct vert_out {
+	float4 pos : POSITION;
+	float2 uv  : TEXCOORD0;
+};
+
+vert_out VS(vert_out v_in)
+{
+	vert_out v;
+	v.pos = mul(float4(v_in.pos.xyz, 1.0), ViewProj);
+	v.uv  = v_in.uv;
+	return v;
+}
+
+float4 PS(vert_out v_in) : TARGET
+{
+	float2 uv = v_in.uv;
+
+	float4 c =
+		tex_frame_0.Sample(def_sampler, uv)  * w0  +
+		tex_frame_1.Sample(def_sampler, uv)  * w1  +
+		tex_frame_2.Sample(def_sampler, uv)  * w2  +
+		tex_frame_3.Sample(def_sampler, uv)  * w3  +
+		tex_frame_4.Sample(def_sampler, uv)  * w4  +
+		tex_frame_5.Sample(def_sampler, uv)  * w5  +
+		tex_frame_6.Sample(def_sampler, uv)  * w6  +
+		tex_frame_7.Sample(def_sampler, uv)  * w7  +
+		tex_frame_8.Sample(def_sampler, uv)  * w8  +
+		tex_frame_9.Sample(def_sampler, uv)  * w9  +
+		tex_frame_10.Sample(def_sampler, uv) * w10 +
+		tex_frame_11.Sample(def_sampler, uv) * w11 +
+		tex_frame_12.Sample(def_sampler, uv) * w12 +
+		tex_frame_13.Sample(def_sampler, uv) * w13 +
+		tex_frame_14.Sample(def_sampler, uv) * w14 +
+		tex_frame_15.Sample(def_sampler, uv) * w15;
+
+	// saturation: lerp between luminance and full color
+	float lum = dot(c.rgb, float3(0.2126, 0.7152, 0.0722));
+	c.rgb = lerp(float3(lum, lum, lum), c.rgb, saturation);
+
+	// contrast: pivot at 0.5
+	c.rgb = (c.rgb - 0.5) * contrast + 0.5;
+
+	// brightness: multiplicative
+	c.rgb = c.rgb * brightness;
+
+	c.rgb = saturate(c.rgb);
+	return c;
+}
+
+technique Draw
+{
+	pass
+	{
+		vertex_shader = VS(v_in);
+		pixel_shader  = PS(v_in);
+	}
+}
